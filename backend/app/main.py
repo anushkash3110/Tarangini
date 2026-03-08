@@ -16,7 +16,7 @@ import os
 import json
 import uvicorn
 import joblib
-import google.generativeai as genai
+from google import genai
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -27,8 +27,9 @@ from dotenv import load_dotenv
 from contextlib import asynccontextmanager
 from sqlalchemy.orm import Session
 # Replace '.database' and '.routes' with your actual file names
-from . import init_db, get_db 
-from .routes import auth as auth_routes, forum as forum_routes, prediction as prediction_routes
+from app.db.session import  get_db 
+from app.db.init_db import  init_db
+from app.api import auth_routes, forum_routes, prediction_routes
 
 # 1. Load Environment Variables
 load_dotenv()
